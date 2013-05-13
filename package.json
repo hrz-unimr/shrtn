@@ -1,0 +1,28 @@
+{
+  "name": "shrtn",
+  "version": "0.2.0",
+  "description": "A simple & fast URL shortening service",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/hrz-unimr/shrtn.git"
+  },
+  "keywords": [
+    "shortener"
+  ],
+  "author": "Tobias Muellerleile <muellerleile@hrz.uni-marburg.de>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "~3.2.4",
+    "express-params": "~0.0.3",
+    "pg": "~1.1.0",
+    "qr": "~0.2.0"
+  },
+  "devDependencies": {
+    "supertest": "~0.5.1",
+    "mocha": "~1.9.0"
+  }
+}
