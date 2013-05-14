@@ -160,8 +160,7 @@ The application itself imposes *no limit on shorten request rate* per client nor
 does it provide any means of *access control* (e. g. for stats display). This is
 by design, as we firmly believe that these should be taken care of by a reverse
 proxy in front of your application. So, in other words: **shrtn.js has not been
-designed to run „web-facing“ itself, but behind a „real“ webserver.** Use it at
-your own risk.
+designed to run „web-facing“ itself, but behind a „real“ webserver.**
 
 ### Development
 
