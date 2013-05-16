@@ -265,6 +265,7 @@ suite('GET /stats', function () {
   });
 
   test('returns actually incremented clicks', function (done) {
+    this.slow(1075);
     request(app)
       .get('/stats/' + hash + '?format=txt')
       .expect('Content-Type', /text\/plain/)
@@ -274,15 +275,17 @@ suite('GET /stats', function () {
           return done(err);
         } else {
           var clicks = parseInt(res.text, 10);
-          request(app)
-            .get('/' + hash)
-            .expect(301)
-            .end(function (err, res) {
-              request(app)
-                .get('/stats/' + hash + '?format=txt')
-                .expect(200)
-                .expect('' + (clicks + 1), done);
-            });
+          setTimeout(function () {
+            request(app)
+              .get('/' + hash)
+              .expect(301)
+              .end(function (err, res) {
+                request(app)
+                  .get('/stats/' + hash + '?format=txt')
+                  .expect(200)
+                  .expect('' + (clicks + 1), done);
+              });
+          }, 1000);
         }
       });
   });
