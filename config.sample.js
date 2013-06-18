@@ -34,7 +34,7 @@ module.exports = {
   },
   qrcode: {
     enabled: true,
-    errorCorrectionLevel: 'H', // H (highest) - Q - M - L (lowest)
+    errorCorrectionLevel: 3, // = qrc.EC_H (H [highest] - Q - M - L [lowest])
     defaultDotSize: 10, // 'bit' square size in px
     minDotSize: 1,
     maxDotSize: 40,

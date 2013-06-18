@@ -19,7 +19,7 @@
     "express": "~3.2.4",
     "express-params": "~0.0.3",
     "pg": "~1.1.0",
-    "qr": "~0.2.0"
+    "qrc": "0.1.0"
   },
   "devDependencies": {
     "supertest": "~0.5.1",
