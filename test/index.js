@@ -265,7 +265,8 @@ suite('GET /stats', function () {
   });
 
   test('returns actually incremented clicks', function (done) {
-    this.slow(1075);
+    this.slow(4075);
+    this.timeout(5000);
     request(app)
       .get('/stats/' + hash + '?format=txt')
       .expect('Content-Type', /text\/plain/)
@@ -285,7 +286,7 @@ suite('GET /stats', function () {
                   .expect(200)
                   .expect('' + (clicks + 1), done);
               });
-          }, 1000);
+          }, 4000);
         }
       });
   });
