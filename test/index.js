@@ -124,14 +124,14 @@ suite('GET /shorten', function () {
   test('performs normalization during shortening', function (done) {
     request(app)
       .get('/shorten/http%3A%2F%2Fa-very-long-domain.name%2Fwith%2Fan%2Feven' +
-        '%2Flonger%2Fpath%3F')
+        '%2Flonger%2Fpath')
       .expect(200)
       .expect('Content-Type', /json/)
       .end(function (err, res) {
         if (err) {
           return done(err);
         } else {
-          var hash = res.body.hash;
+          var hashCanonicalUrl = res.body.hash;
           request(app)
             .get('/shorten/http%3A%2F%2Fa-very-long-domain.name%3A80' +
                 '%2Fwith%2Fan%2Feven%2Flonger%2Fpath%23')
@@ -141,8 +141,20 @@ suite('GET /shorten', function () {
               if (err) {
                 return done(err);
               } else {
-                assert.strictEqual(hash, res.body.hash);
-                return done();
+                assert.strictEqual(hashCanonicalUrl, res.body.hash);
+                request(app)
+                  .get('/shorten/http%3A%2F%2Fa-very-long-domain.name%2Fwith%2Fan%2Feven' +
+        '%2Flonger%2Fpath%3F')
+                  .expect(200)
+                  .expect('Content-Type', /json/)
+                  .end(function (err, res) {
+                    if (err) {
+                      return done(err);
+                    } else {
+                      assert.strictEqual(hashCanonicalUrl, res.body.hash);
+                      return done();
+                    }
+                  });
               }
             });
         }
