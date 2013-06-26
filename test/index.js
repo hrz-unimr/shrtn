@@ -143,8 +143,8 @@ suite('GET /shorten', function () {
               } else {
                 assert.strictEqual(hashCanonicalUrl, res.body.hash);
                 request(app)
-                  .get('/shorten/http%3A%2F%2Fa-very-long-domain.name%2Fwith%2Fan%2Feven' +
-        '%2Flonger%2Fpath%3F')
+                  .get('/shorten/http%3A%2F%2Fa-very-long-domain.name' +
+                      '%2Fwith%2Fan%2Feven%2Flonger%2Fpath%3F')
                   .expect(200)
                   .expect('Content-Type', /json/)
                   .end(function (err, res) {
