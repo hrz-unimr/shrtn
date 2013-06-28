@@ -21,8 +21,9 @@ var shrtn = require('./lib/shrtn');
  * Route definitions
  */
 app.get('/shorten/:url', shrtn.shorten);
+app.get('/expand/:hash', shrtn.expand);
 app.get('/stats/:hash', shrtn.stats);
-app.get('/:hash', shrtn.expand);
+app.get('/:hash', shrtn.resolve);
 
 
 /*

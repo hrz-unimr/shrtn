@@ -240,6 +240,54 @@ suite('GET|HEAD /[hash]', function () {
   });
 });
 
+suite('GET /expand', function () {
+  var hash;
+
+  test('returns 404 for unknown hash', function (done) {
+    request(app)
+      .get('/expand/unkno')
+      .expect(404, done);
+  });
+
+  test('returns long URL and hash for known hash', function (done) {
+    request(app)
+      .get('/shorten/http%3A%2F%2Fa-very-long-domain.name%2Fwith%2Fan%2Feven' +
+        '%2Flonger%2Fpath%3F')
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end(function (err, res) {
+        if (err) {
+          return done(err);
+        } else {
+          hash = res.body.hash;
+          request(app)
+            .get('/expand/' + hash)
+            .expect('Content-Type', /json/)
+            .expect(200)
+            .end(function (err, res) {
+              if (err) {
+                return done(err);
+              } else {
+                assert.strictEqual('http://a-very-long-domain.name/' +
+                    'with/an/even/longer/path', res.body.longUrl);
+                assert.strictEqual(hash, res.body.hash);
+                return done();
+              }
+            });
+        }
+      });
+  });
+
+  test('returns long URL in text/plain (on demand)', function (done) {
+    request(app)
+      .get('/expand/' + hash + '?format=txt')
+      .expect('Content-Type', /text\/plain/)
+      .expect('http://a-very-long-domain.name/with/an/even/longer/path')
+      .expect(200, done);
+  });
+
+});
+
 suite('GET /stats', function () {
   var hash;
 
