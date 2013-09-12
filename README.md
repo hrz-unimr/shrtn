@@ -173,6 +173,11 @@ designed to run „web-facing“ itself, but behind a „real“ webserver.**
 
 Very welcome!
 
+### Legal
+
+QR Code is a registered trademark of
+[DENSO WAVE INCORPORATED](http://www.denso-wave.com/en/).
+
 ### License
 
 MIT (see LICENSE)
