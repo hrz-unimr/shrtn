@@ -7,7 +7,8 @@ A simple and fast URL shortening service
 - [node.js](http://nodejs.org/)
 - [PostgreSQL](http://www.postgresql.org/)
   (in any version supported by [pg](https://npmjs.org/package/pg))
-- [libqrencode](https://github.com/fukuchi/libqrencode) (for optional QR Code
+- [libqrencode](http://fukuchi.org/works/qrencode/) and
+  [libpng](http://www.libpng.org/pub/png/libpng.html) (for optional QR Code
   output support)
 
 ## Installation
@@ -17,9 +18,6 @@ A simple and fast URL shortening service
     $ git clone https://github.com/hrz-unimr/shrtn
     $ cd shrtn
     $ npm install
-
-Optionally, if you are going to offer QR Code output support, make sure
-libqrencode’s `qrencode` is in your application’s `PATH`.
 
 ### Database setup
 
