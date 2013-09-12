@@ -44,13 +44,13 @@ hashes in order to get a full (short) URL
 
 `hash.length`: Sets the character length for generated Hashes
 
-– Use either: –
+\– Use either: –
 
 `hash.caseSensitive`: Sets whether or not mixed-case hashes are generated
 
 `hash.decimals`: Sets whether or not generated hashes may contain decimals
 
-– or: –
+\– or: –
 
 `hash.range`: Sets a custom range of valid characters for hashes (main use for
 this option is to explicitly prevent usage of visually similar characters like
@@ -96,7 +96,7 @@ dot size values as given per request parameter (see below)
 
 #### GET /shorten/<url>
 
-Takes `<url>` (in encoded form as in `encodeURIComponent()`); returns JSON
+Accepts `<url>` (in encoded form as in `encodeURIComponent()`); returns JSON
 result of the following form:
 
     {
@@ -111,7 +111,7 @@ generated hash, `url` is the complete short URL and `newHash` is a flag
 indicating whether or not this is URL was shortened for the first time (i. e.
 the hash was generated for this request or was already present in the database).
 
-This takes a few extra query string parameters:
+This accepts a few extra query string parameters:
 
 `format=txt`: generates a plaintext response containing only the short
 URL
@@ -145,7 +145,7 @@ the following form:
 original creation time for this short URL, and `atime` marks the time of the
 last expansion request.
 
-This takes the following additional query string parameters:
+This accepts the following additional query string parameters:
 
 `format=txt`: Returns a plaintext response containing only the value of `clicks`
 
