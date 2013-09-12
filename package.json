@@ -16,13 +16,13 @@
   "author": "Tobias Muellerleile <muellerleile@hrz.uni-marburg.de>",
   "license": "MIT",
   "dependencies": {
-    "express": "3.3.1",
+    "express": "3.4.0",
     "express-params": "0.0.3",
-    "pg": "2.0.0",
+    "pg": "2.6.2",
     "qrc": "0.1.0"
   },
   "devDependencies": {
     "supertest": "0.7.0",
-    "mocha": "1.11.0"
+    "mocha": "1.12.1"
   }
 }
