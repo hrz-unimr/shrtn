@@ -12,7 +12,7 @@ if (config.http.enableCORS === true) {
   app.use(middleware.cors);
 }
 
-app.param('url', /^[a-zA-Z0-9\-_.~!*'();:@&=+$,/?#\[\]]+/);
+app.param('url', /^[a-zA-Z0-9\-_.~!*'();:@&%|=+$,/?#\[\]]+/);
 app.param('hash', config.hash._regex);
 
 var shrtn = require('./lib/shrtn');
