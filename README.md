@@ -42,19 +42,19 @@ hashes in order to get a full (short) URL
 
 #### Hash generation options
 
-`hash.length`: Sets the character length for generated Hashes
+`hash.length`: Sets the character length for generated hashes
 
-\– Use either: –
+– Use either: –
 
 `hash.caseSensitive`: Sets whether or not mixed-case hashes are generated
 
 `hash.decimals`: Sets whether or not generated hashes may contain decimals
 
-\– or: –
+– or: –
 
 `hash.range`: Sets a custom range of valid characters for hashes (main use for
 this option is to explicitly prevent usage of visually similar characters like
-"l" and "1"). See comment in sample config for a valid example.
+„l“ and „1“). See comment in sample config for a valid example.
 
 `hash.blacklist`: Sets a blacklist for request and generated hashes, no hash on
 this list will be useable
@@ -78,19 +78,20 @@ establishing a „trusted URL“ shortening service.
 
 #### QR Code options
 
-`qrcode.enabled`: Sets whether or not QR code output is supported at all
+`qrcode.enabled`: Sets whether or not QR Code output is supported at all
 
-`qrcode.errorCorrectionLevel`: Sets QR code error correction level (valid values
+`qrcode.errorCorrectionLevel`: Sets QR Code error correction level (valid values
 range from `'H'` (highest) to `'L'` (lowest). See corresponding comment in
 sample config.
 
-`qrcode.defaultDotSize`: Sets default „dot“ (= bit) size of QR code output,
+`qrcode.defaultDotSize`: Sets default „dot“ (= bit) size of QR Code output,
 overridable per request (see below)
 
-`qrcode.minDotSize`/`qrcode.maxDotSize`: Sets lower and upper Limits for valid
+`qrcode.minDotSize`/`qrcode.maxDotSize`: Sets lower and upper limits for valid
 dot size values as given per request parameter (see below)
 
-`qrcode.marginDots`: Sets „white“ margin size (in dots) of QR code output
+`qrcode.marginDots`: Sets „white“ (= background color) margin size (in dots) of
+QR Code output
 
 ### API documentation
 
@@ -116,7 +117,7 @@ This accepts a few extra query string parameters:
 `format=txt`: generates a plaintext response containing only the short
 URL
 
-`format=qrcode`: generates a PNG response containing a QR code of the short URL,
+`format=qrcode`: generates a PNG response containing a QR Code of the short URL,
 an additional parameter allows for modifying the size of the output: `size=<px>`
 creates a code with a „dot“ size of px × px pixels.
 
@@ -154,7 +155,7 @@ function named `<callbackFunction>`
 
 ### Considerations for production deployment
 
-The application itself imposes *no limit on shorten request rate* per client nor
+The application itself imposes *no limit* on shorten request rate per client nor
 does it provide any means of *access control* (e. g. for stats display). This is
 by design, as we firmly believe that these should be taken care of by a reverse
 proxy in front of your application. So, in other words: **shrtn.js has not been
@@ -164,8 +165,8 @@ designed to run „web-facing“ itself, but behind a „real“ webserver.**
 
 #### Dependencies
 
-- [Mocha](http://visionmedia.github.io/mocha/)/
-  [SuperAgent](https://npmjs.org/package/superagent) (for tests)
+- [Mocha](http://visionmedia.github.io/mocha/) and
+[SuperAgent](https://npmjs.org/package/superagent) (for tests)
 - [JSHint](http://www.jshint.com/) (for coding style enforcement,
   see `.jshintrc`)
 
