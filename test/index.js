@@ -1,11 +1,19 @@
-/* global suite: false, test: false */
+/* global suite: false, test: false, before: false */
+var http = require('http');
 var assert = require('assert');
 var request = require('supertest');
 
 var app = require('../');
 var appConfig = app.get('config');
 
-request = request(app);
+before(function (done) {
+  app = http.createServer(app);
+  app.listen(0, 'localhost', function () {
+    request = request('http://' + app.address().address +
+        ':' + app.address().port);
+    done();
+  });
+});
 
 suite('OPTIONS /', function () {
   test('return CORS headers', function (done) {
