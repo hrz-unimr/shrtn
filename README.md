@@ -95,7 +95,7 @@ QR Code output
 
 ### API documentation
 
-#### GET /shorten/<url>
+#### GET /shorten/&lt;url&gt;
 
 Accepts `<url>` (in encoded form as in `encodeURIComponent()`); returns JSON
 result of the following form:
@@ -126,12 +126,12 @@ creates a code with a „dot“ size of px × px pixels.
 `callback=<callbackFunction>`: returns JSONP response wrapped in a callback
 function named `<callbackFunction>`
 
-#### GET|HEAD /<hash>
+#### GET|HEAD /&lt;hash&gt;
 
 Performs the hash expansion (by returning HTTP permanent redirect to the
 original URL's location)
 
-#### GET /stats/<hash>
+#### GET /stats/&lt;hash&gt;
 
 Returns some very basic usage metrics on the corresponding short URL in JSON of
 the following form:
