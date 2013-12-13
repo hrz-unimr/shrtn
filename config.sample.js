@@ -8,7 +8,7 @@ module.exports = {
   http: {
     address: '127.0.0.1',
     port: 8080,
-    enableCORS: true,
+    enableCORS: false,
     CORS: {
       allowOrigin: '*',
       allowHeaders: 'X-Requested-With',
