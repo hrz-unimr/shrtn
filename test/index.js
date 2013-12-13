@@ -1,5 +1,6 @@
 /* global suite: false, test: false, before: false */
 var http = require('http');
+var vm = require('vm');
 var assert = require('assert');
 var request = require('supertest');
 
@@ -12,17 +13,6 @@ before(function (done) {
     request = request('http://' + app.address().address +
         ':' + app.address().port);
     done();
-  });
-});
-
-suite('OPTIONS /', function () {
-  test('return CORS headers', function (done) {
-    request.options('/')
-      .expect('Access-Control-Allow-Origin', '*')
-      .expect('Access-Control-Allow-Headers', 'X-Requested-With')
-      .expect('Access-Control-Allow-Methods', 'GET')
-      .expect('Access-Control-Max-Age', '86400')
-      .expect(200, done);
   });
 });
 
@@ -191,6 +181,49 @@ suite('GET /shorten', function () {
       .expect('Content-Type', /image\/png/)
       .expect('Content-Length', /[0-9]{3,4}/)
       .expect(200, done);
+  });
+
+  test('does NOT return JSONP on demand by (config) default', function (done) {
+    request.get('/shorten/http%3A%2F%2Fa-very-long-domain.name' +
+        '%2Fwith%2Fan%2Feven%2Flonger%2Fpath?callback=foo')
+      .expect('Content-Type', /json/)
+      .end(function (err, res) {
+        if (err) {
+          return done(err);
+        } else {
+          assert(appConfig.hash._regex.test(res.body.hash));
+          assert.strictEqual(res.body.longUrl,
+            'http://a-very-long-domain.name/with/an/even/longer/path');
+          assert.strictEqual(res.body.url, appConfig.hash.urlPrefix +
+            res.body.hash);
+          return done();
+        }
+      });
+  });
+
+  test('returns JSONP on demand when enabled in config', function (done) {
+    appConfig.http.enableJSONP = true;
+    request.get('/shorten/http%3A%2F%2Fa-very-long-domain.name' +
+        '%2Fwith%2Fan%2Feven%2Flonger%2Fpath?callback=foo')
+      .expect('Content-Type', /text\/javascript/)
+      .end(function (err, res) {
+        appConfig.http.enableJSONP = false;
+        if (err) {
+          return done(err);
+        } else {
+          var sandbox = {
+            body: null,
+          };
+          var fun = 'function foo(arg) { body = arg; }; ';
+          vm.createScript(fun + res.text).runInNewContext(sandbox);
+          assert(appConfig.hash._regex.test(sandbox.body.hash));
+          assert.strictEqual(sandbox.body.longUrl,
+            'http://a-very-long-domain.name/with/an/even/longer/path');
+          assert.strictEqual(sandbox.body.url, appConfig.hash.urlPrefix +
+            sandbox.body.hash);
+          return done();
+        }
+      });
   });
 });
 

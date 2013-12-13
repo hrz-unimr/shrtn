@@ -9,7 +9,7 @@ app.set('db', db);
 
 if (config.http.enableCORS === true) {
   var middleware = require('./lib/middleware');
-  app.use(middleware.cors);
+  app.use(middleware.cors(config.http.CORS));
 }
 
 app.param('url', /^[a-zA-Z0-9\-_.~!*'();:@&%|=+$,/?#\[\]]+/);

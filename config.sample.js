@@ -8,7 +8,14 @@ module.exports = {
   http: {
     address: '127.0.0.1',
     port: 8080,
-    enableCORS: true
+    enableCORS: true,
+    CORS: {
+      allowOrigin: '*',
+      allowHeaders: 'X-Requested-With',
+      allowMethods: 'GET',
+      maxAge: 86400,
+    },
+    enableJSONP: false,
   },
   db: {
     host: 'localhost',
